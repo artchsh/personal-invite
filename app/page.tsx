@@ -10,7 +10,6 @@ import GoogleIcon from './icons/google';
 import AppleCalendar from './icons/AppleCalendar';
 
 export default function Home() {
-  const [isRSVPed, setIsRSVPed] = useState(false);
   const [isJackboxSheetOpen, setIsJackboxSheetOpen] = useState(false);
 
   // Native JS date formatting functions
@@ -106,11 +105,6 @@ END:VCALENDAR`;
     link.download = 'invitation.ics';
     link.click();
     URL.revokeObjectURL(url);
-  };
-
-  const handleRSVP = () => {
-    setIsRSVPed(true);
-    // Here you could integrate with a backend to store RSVP responses
   };
 
   return (
@@ -536,82 +530,7 @@ END:VCALENDAR`;
                 </motion.button>
               </div>
             </motion.div>
-
-            {/* RSVP Button */}
-            <motion.div
-              className="text-center"
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.6, delay: 4.9 }}
-            >
-              <AnimatePresence mode="wait">
-                {!isRSVPed ? (
-                  <motion.button
-                    key="rsvp-button"
-                    onClick={handleRSVP}
-                    className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 backdrop-blur-sm text-white px-12 py-4 rounded-full text-lg font-semibold transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 border border-red-500/30"
-                    whileHover={{
-                      scale: 1.05,
-                      boxShadow: "0 0 30px rgba(239, 68, 68, 0.5)"
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0.8, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <motion.span
-                      animate={{
-                        textShadow: [
-                          "0 0 0px rgba(255,255,255,0)",
-                          "0 0 10px rgba(255,255,255,0.5)",
-                          "0 0 0px rgba(255,255,255,0)"
-                        ]
-                      }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      Подтвердить участие ✨
-                    </motion.span>
-                  </motion.button>
-                ) : (
-                  <motion.div
-                    key="rsvp-success"
-                    className="text-center"
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.5, type: "spring", bounce: 0.6 }}
-                  >
-                    <motion.div
-                      className="inline-flex items-center space-x-2 bg-green-500/20 backdrop-blur-sm text-green-300 px-6 py-3 rounded-full border border-green-500/30"
-                      animate={{
-                        boxShadow: [
-                          "0 0 0 0 rgba(34, 197, 94, 0.4)",
-                          "0 0 0 15px rgba(34, 197, 94, 0)",
-                          "0 0 0 0 rgba(34, 197, 94, 0)"
-                        ]
-                      }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      <motion.div
-                        animate={{ scale: [1, 1.2, 1] }}
-                        transition={{ duration: 1, repeat: Infinity }}
-                      >
-                        <Heart className="w-5 h-5" />
-                      </motion.div>
-                      <span className="font-semibold">Спасибо за подтверждение!</span>
-                    </motion.div>
-                    <motion.p
-                      className="text-white/70 mt-2"
-                      initial={{ y: 10, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ duration: 0.5, delay: 0.3 }}
-                    >
-                      Ждём вас на празднике!
-                    </motion.p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
+            
           </motion.div>
 
           {/* Footer */}
